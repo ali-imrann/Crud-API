@@ -28,6 +28,7 @@ npm run dev
 ```
 
 ## Project Structure
+
 ```bash
 CRUD-API/
 ├── database/                # Folder for database-related files
