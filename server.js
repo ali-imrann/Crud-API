@@ -102,6 +102,24 @@ app.patch("/:id", async (req, res) => {
     }
 });
 
+
+app.delete("/delete/:todoId", async (req, res) => {
+    try {
+        const result = await Todo.findByIdAndDelete(req.params.todoId)
+        res.send({
+            success: true,
+            message: "Todo Deleted Successfully!",
+            data: null
+        })
+    } catch (error) {
+        res.send({
+            success: false,
+            message: "Failed to Delete Todo!",
+            data: null
+        })
+    }
+})
+
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
 });
