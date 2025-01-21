@@ -49,6 +49,25 @@ app.post("/create-todo", async (req, res) => {
         })
     }
 })
+ 
+
+app.get("/:todoId", async (req, res) => {
+    const todoId = req.params.todoId
+    try {
+        const result = await Todo.findById(todoId)
+        res.send ({
+            success: true,
+            message: "Todo Lists Retreived Successfully!",
+            data: result
+        })
+    } catch (error) {
+        res.send ({
+            success: false,
+            message: "Failed to Retreive Todo!",
+            data: result
+        })
+    }
+})
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
