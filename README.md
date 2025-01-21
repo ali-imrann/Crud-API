@@ -28,7 +28,7 @@ npm run dev
 ```
 
 ## Project Structure
-
+```bash
 CRUD-API/
 ├── database/                # Folder for database-related files
 │   ├── db.js                # Database connection file
@@ -36,7 +36,7 @@ CRUD-API/
 │   └── todo.model.js        # Model for the Todo item (defines schema)
 ├── package.json             # Project dependencies and scripts
 └── server.js                # Main application entry point
-
+```
 
 ### Endpoints
 
