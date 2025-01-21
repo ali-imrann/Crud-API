@@ -69,6 +69,39 @@ app.get("/:todoId", async (req, res) => {
     }
 })
 
+app.patch("/:id", async (req, res) => {
+    const todoId = req.params.id; // Corrected the parameter name to `id`
+    const updatedTodo = req.body; // Get the updated data from the request body
+    try {
+        const result = await Todo.findByIdAndUpdate(todoId, updatedTodo, {
+            new: true, // Return the modified document rather than the original
+        });
+
+        // Check if result is found and updated
+        if (result) {
+            res.send({
+                success: true,
+                message: "Todo Updated Successfully!",
+                data: result, // Return the updated todo data
+            });
+        } else {
+            // If the todo is not found, return a 404 error
+            res.status(404).send({
+                success: false,
+                message: "Todo Not Found!",
+                data: null,
+            });
+        }
+    } catch (error) {
+        // Catch any errors and send an appropriate response
+        res.status(500).send({
+            success: false,
+            message: "Todo Failed to Update!",
+            error: error.message, // Provide the error message for debugging
+        });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
 });
